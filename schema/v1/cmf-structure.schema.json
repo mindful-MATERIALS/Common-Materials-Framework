@@ -3,7 +3,7 @@
   "$id": "https://buildingease.com/schemas/cmf-structure/v1.schema.json",
   "$comment": "Generated from the BuildingEase CMF schema (structure version 1). Do not edit by hand.",
   "title": "BuildingEase CMF Structure",
-  "description": "A product's Circular Materials Framework (CMF) structure, schema version 1. Every field is a list of { value, source } records; a record's source names an entry in the top-level sources list (or is null). Fields and sections with no data are omitted. Every non-null record source must match the name of an entry in sources; JSON Schema cannot express that rule, so validate it separately.",
+  "description": "A product's Common Materials Framework (CMF) structure, schema version 1. Every field is a list of { value, source } records; a record's source names an entry in the top-level sources list (or is null). Fields and sections with no data are omitted. Every non-null record source must match the name of an entry in sources; JSON Schema cannot express that rule, so validate it separately.",
   "type": "object",
   "required": [
     "schemaVersion",
