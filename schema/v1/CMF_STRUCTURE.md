@@ -8,7 +8,7 @@
 
 ## Overview
 
-The Circular Materials Framework (CMF) structure is a JSON document that describes one product's sustainability attributes across five impact areas: Human Health, Climate Health, Circular Economy, Social Health & Equity, and Ecosystem Health. Each value in the document records which data source it came from, such as an Environmental Product Declaration (EPD), a Health Product Declaration (HPD), or the product's own data.
+The Common Materials Framework (CMF) structure is a JSON document that describes one product's sustainability attributes across five impact areas: Human Health, Climate Health, Circular Economy, Social Health & Equity, and Ecosystem Health. Each value in the document records which data source it came from, such as an Environmental Product Declaration (EPD), a Health Product Declaration (HPD), or the product's own data.
 
 ## Document structure
 
