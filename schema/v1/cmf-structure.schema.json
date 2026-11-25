@@ -1,0 +1,3731 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://buildingease.com/schemas/cmf-structure/v1.schema.json",
+  "$comment": "Generated from the BuildingEase CMF schema (structure version 1). Do not edit by hand.",
+  "title": "BuildingEase CMF Structure",
+  "description": "A product's Circular Materials Framework (CMF) structure, schema version 1. Every field is a list of { value, source } records; a record's source names an entry in the top-level sources list (or is null). Fields and sections with no data are omitted. Every non-null record source must match the name of an entry in sources; JSON Schema cannot express that rule, so validate it separately.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sources",
+    "updatedTimestamp",
+    "impactAreas"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "description": "Version of the CMF structure this document follows. Increases whenever the structure changes.",
+      "const": 1
+    },
+    "sources": {
+      "description": "Every data source referenced by a field in this document, one entry per unique name.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "updatedTimestamp": {
+      "description": "When this document was generated (ISO 8601, UTC).",
+      "type": "string",
+      "format": "date-time"
+    },
+    "impactAreas": {
+      "description": "The CMF fields, grouped by impact area.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "humanHealth": {
+          "title": "1. HUMAN HEALTH",
+          "description": "Materials and the chemicals and processes used to make them impact human health at every stage, from manufacturing to use to disposal.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "substances": {
+              "title": "1.1 Substances",
+              "description": "Applies to the product. Substances are defined by the EPA as any organic or inorganic substance of a particular molecular identity. The CMF includes factors such as percentage of disclosure, disclosure granularity, restricted substance lists, and class-based chemical avoidance.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "1.1.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "reportingThresholdLevel": {
+                      "title": "1.1.1.1 Reporting Threshold Level",
+                      "description": "A level of the \"Reporting Threshold\" rating scale.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/rating_reporting_threshold"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "thirdPartyVerified": {
+                      "title": "1.1.1.2 Third-Party Verified",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "extentOfDisclosedInventory": {
+                      "title": "1.1.1.3 Extent of Disclosed Inventory",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "percentDisclosed": {
+                          "title": "1.1.1.3.1 % Disclosed",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "$ref": "#/$defs/rating_disclosed"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "publiclyDisclosed": {
+                          "title": "1.1.1.3.2 Publicly Disclosed",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "screened": {
+                      "title": "1.1.1.4 Screened",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "characterized": {
+                      "title": "1.1.1.5 Characterized",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "identified": {
+                      "title": "1.1.1.6 Identified",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "optimization": {
+                  "title": "1.1.4 Optimization",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "classBasedSubstanceAvoidance": {
+                      "title": "1.1.4.1 Class-Based Substance Avoidance",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "noAlkylphenols": {
+                          "title": "1.1.4.1.1 No Alkylphenols (APEs)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noAntimicrobials": {
+                          "title": "1.1.4.1.2 No Antimicrobials",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noAzoDyes": {
+                          "title": "1.1.4.1.3 No Azo Dyes",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noBisphenols": {
+                          "title": "1.1.4.1.4 No Bisphenols",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noChlorophenols": {
+                          "title": "1.1.4.1.5 No Chlorophenols (All)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noCrumbRubber": {
+                          "title": "1.1.4.1.6 No Crumb Rubber (aka Tire-Derived Rubber)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noFlameRetardants": {
+                          "title": "1.1.4.1.7 No Flame Retardants",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noFlyAsh": {
+                          "title": "1.1.4.1.8 No Fly Ash",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noFormaldehydes": {
+                          "title": "1.1.4.1.9 No Formaldehydes",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noIsocyanates": {
+                          "title": "1.1.4.1.10 No Isocyanates",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noMethylAndAcrylateGroups": {
+                          "title": "1.1.4.1.11 No Methyl & Acrylate Groups",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noOrthoPhthalates": {
+                          "title": "1.1.4.1.12 No Ortho-Phthalates",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noPfas": {
+                          "title": "1.1.4.1.13 No PFAS",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noPvcCpvc": {
+                          "title": "1.1.4.1.14 No Polyvinyl Chloride (PVC) / Chlorinated Polyvinyl Chloride (CPVC)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noSbr": {
+                          "title": "1.1.4.1.15 No Styrene Butadiene Rubber (SBR)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "noToxicMetalsAndCompounds": {
+                          "title": "1.1.4.1.16 No Toxic Metals & Compounds",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "assessmentBasedOptimization": {
+                      "title": "1.1.4.2 Assessment-Based Optimization",
+                      "description": "A level of the \"Assessment-Based Optimization Levels\" rating scale.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/rating_assessment_based_optimization_levels"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "restrictedSubstanceListScreeningCompliance": {
+                      "title": "1.1.4.3 Restricted Substance List (RSL) Screening Compliance",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "caEpaProp65": {
+                          "title": "1.1.4.3.1 CA EPA - Prop 65",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "c2cRestrictedV4": {
+                          "title": "1.1.4.3.2 Cradle to Cradle Restricted Substances (version 4)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "c2cBannedListV3": {
+                          "title": "1.1.4.3.3 Cradle to Cradle Banned List Substances (version 3)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "gspiSixClasses": {
+                          "title": "1.1.4.3.4 Green Science Policy Institute Six Classes",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "greenScreenBm1Lt1": {
+                          "title": "1.1.4.3.5 GreenScreen BM-1 or LT-1 Chemicals",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "hcwhHealthyInteriorsV24": {
+                          "title": "1.1.4.3.6 HCWH Healthy Interiors: Furniture & Furnishings, v2.4",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "kaiserPermanenteEpp": {
+                          "title": "1.1.4.3.7 Kaiser Permanente EPP Chemicals of Concern",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "lbcRedListV40Apr2024": {
+                          "title": "1.1.4.3.8 Living Building Challenge Red List Substances - v4.0 (April 2024 Update)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "lbcRedListV40Apr2023": {
+                          "title": "1.1.4.3.9 Living Building Challenge Red List Substances - v4.0 (April 2023 Update)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "perkinsWillPrecautionary": {
+                          "title": "1.1.4.3.10 Perkins+Will Precautionary List",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "reachSvhc": {
+                          "title": "1.1.4.3.11 REACH Candidate List of Substances of Very High Concern (SVHC)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "reachAnnexXiv": {
+                          "title": "1.1.4.3.12 REACH Authorization List (Annex XIV)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "reachAnnexXvii": {
+                          "title": "1.1.4.3.13 REACH Restrictions List (Annex XVII)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "epaTriPbts": {
+                          "title": "1.1.4.3.14 US EPA - Toxics Release Inventory PBTs",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "rohsAnnexIiV2": {
+                          "title": "1.1.4.3.15 RoHS Restricted Substances, EU (ANNEX II, Version 2.0)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "vocs": {
+              "title": "1.2 VOCs",
+              "description": "Applies to the product. Volatile organic compounds (VOCs) are chemicals frequently used in interior products and finishes which may off-gas at room temperature.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "assessment": {
+                  "title": "1.2.2 Assessment",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "applicableVocTesting": {
+                      "title": "1.2.2.1 Applicable VOC Testing",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "vocContent": {
+                          "title": "1.2.2.1.1 VOC Content",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "vocEmissions": {
+                          "title": "1.2.2.1.2 VOC Emissions",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "formaldehydeEmissions": {
+                          "title": "1.2.2.1.3 Formaldehyde Emissions",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "inherentlyNonEmitting": {
+                          "title": "1.2.2.1.4 Inherently Non-Emitting",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "vocContentRegulatory": {
+                      "title": "1.2.2.2 VOC Content (Regulatory)",
+                      "description": "Unit: g/L.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "optimization": {
+                  "title": "1.2.4 Optimization",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "vocContentCarb2007Compliance": {
+                      "title": "1.2.4.1 VOC Content - CARB 2007 Compliance",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "vocContentScaqmdComplianceLevel": {
+                      "title": "1.2.4.2 VOC Content - SCAQMD Compliance Level",
+                      "description": "One value of the \"VOC Content - SCAQMD Compliance Level\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_voc_content_scaqmd_compliance_level"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "vocEmissionsCompliance": {
+                      "title": "1.2.4.3 VOC Emissions Compliance",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "cdphV122017": {
+                          "title": "1.2.4.3.1 CDPH Standard Method v1.2-2017",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "glpV2012017": {
+                          "title": "1.2.4.3.2 Green Label Plus (GLP) Emissions Criteria v2.01-2017",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "inherentlyNonEmitting": {
+                          "title": "1.2.4.3.3 Inherently Non-Emitting",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "tvocEmissionsRange": {
+                      "title": "1.2.4.4 TVOC Emissions Range",
+                      "description": "A level of the \"TVOC Emissions Range\" rating scale.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/rating_tvoc_emissions_range"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "emissionsModelingScenarioForCompliance": {
+                      "title": "1.2.4.5 Emissions Modeling Scenario for Compliance",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "privateOffice": {
+                          "title": "1.2.4.5.1 Private Office Scenario",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "openPlanOffice": {
+                          "title": "1.2.4.5.2 Open Plan Office Scenario",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "schoolClassroom": {
+                          "title": "1.2.4.5.3 School Classroom Scenario",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "singleFamilyResidence": {
+                          "title": "1.2.4.5.4 Single-Family Residence Scenario",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "seating": {
+                          "title": "1.2.4.5.5 Seating Scenario",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "compositeWoodFormaldehydeEmissionsCompliance": {
+                      "title": "1.2.4.6 Composite Wood - Formaldehyde Emissions Compliance (CARB & TSCA Title VI)",
+                      "description": "One value of the \"Composite Wood - Formaldehyde Emissions Compliance (CARB & TSCA Title VI)\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_composite_wood_formaldehyde_emissions_compliance_carb_tsca_title_vi"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "furnitureAnsiBifmaM71Compliance": {
+                      "title": "1.2.4.7 Furniture - ANSI/BIFMA M7.1-2011 Compliance",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "section761": {
+                          "title": "1.2.4.7.1 Section 7.6.1",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "section762": {
+                          "title": "1.2.4.7.2 Section 7.6.2",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "section763": {
+                          "title": "1.2.4.7.3 Section 7.6.3",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "climateHealth": {
+          "title": "2. CLIMATE HEALTH",
+          "description": "Materials and the energy used to extract, manufacture, move, and install them have a major impact on climate.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "embodiedCarbon": {
+              "title": "2.1 Embodied Carbon",
+              "description": "Applies to the product.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "2.1.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "carbonAssessmentType": {
+                      "title": "2.1.1.1 Carbon Assessment Type",
+                      "description": "EPD and LCA types range from highly specific third-party verified product assessments to broader industry-average or internal assessments. One value of the \"Carbon Assessment Type\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_carbon_assessment_type"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "thirdPartyVerified": {
+                      "title": "2.1.1.2 Third-Party Verified",
+                      "description": "Third-party verification demonstrates that the data was collected with the applicable PCR and meets relevant ISO requirements. One value of the \"Embodied Carbon - Third-Party Verified\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_embodied_carbon_third_party_verified"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "epdStandardsUsed": {
+                      "title": "2.1.1.3 EPD Standard(s) Used",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "iso14025": {
+                          "title": "2.1.1.3.1 ISO 14025",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "iso21930": {
+                          "title": "2.1.1.3.2 ISO 21930",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "en15804": {
+                          "title": "2.1.1.3.3 EN 15804",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "en15804A2": {
+                          "title": "2.1.1.3.4 EN 15804 + A2",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "serviceLifeExtendedUtility": {
+                      "title": "2.1.1.4 Service Life / Extended Utility",
+                      "description": "Unit: years. A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "yearsPerPcr": {
+                          "title": "2.1.1.4.1 # of years (per PCR)",
+                          "description": "Unit: years.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "productLifetimeWarranty": {
+                          "title": "2.1.1.4.2 Product Lifetime - Warranty",
+                          "description": "Unit: years.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "averageLifetimeForProductCategory": {
+                          "title": "2.1.1.4.3 Average Lifetime for Product Category",
+                          "description": "Unit: years.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "declaredUnit": {
+                      "title": "2.1.1.5 Declared Unit",
+                      "description": "One value of the \"Declared Unit\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_declared_unit"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "reportedGwpA1A3PerUnit": {
+                      "title": "2.1.1.6 Reported GWP (A1-A3) per Unit (kgCO2e)",
+                      "description": "Reported Global Warming Potential for Life Cycle Production stage modules A1-A3. Unit: kgCO2e. A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "gwpTotal": {
+                          "title": "2.1.1.6.1 GWP - total",
+                          "description": "Unit: kgCO2e.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "gwpBiogenic": {
+                          "title": "2.1.1.6.2 GWP - biogenic",
+                          "description": "Unit: kgCO2e.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "gwpFossil": {
+                          "title": "2.1.1.6.3 GWP - fossil",
+                          "description": "Unit: kgCO2e.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "gwpLuluc": {
+                          "title": "2.1.1.6.4 GWP - luluc",
+                          "description": "Unit: kgCO2e.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "productCategoryRuleInformation": {
+                      "title": "2.1.1.7 Product Category Rule (PCR) Information",
+                      "description": "A PCR provides instructions for how an LCA should be conducted for a particular product type or category.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "declaredModules": {
+                      "title": "2.1.1.8 Declared Modules",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "productStageA1A3": {
+                          "title": "2.1.1.8.1 Product Stage (Cradle to Gate) A1-A3",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "constructionStageA4A5": {
+                          "title": "2.1.1.8.2 Construction Stage (A4-A5)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "useStageB1B5": {
+                          "title": "2.1.1.8.3 Use Stage (B1-B5)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "endOfLifeStageC1C4": {
+                          "title": "2.1.1.8.4 End of Life Stage (C1-C4)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "reuseRecoveryRecyclingPotentialD": {
+                          "title": "2.1.1.8.5 Reuse / Recovery / Recycling Potential (D)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "allStagesCradleToGrave": {
+                          "title": "2.1.1.8.6 All Stages (Cradle-to-Grave)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "kgPerDeclaredUnit": {
+                      "title": "2.1.1.9 kg per Declared Unit",
+                      "description": "Unit: kg.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "optimization": {
+                  "title": "2.1.4 Optimization",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "carbonReduction": {
+                      "title": "2.1.4.1 Carbon Reduction",
+                      "description": "Unit: %. A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "percentCo2eReduced": {
+                          "title": "2.1.4.1.1 % co2e Reduced (%)",
+                          "description": "Unit: %.",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "carbonReductionMethod": {
+                          "title": "Carbon Reduction Method",
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "energyReduction": {
+                              "title": "2.1.4.1.2.1 Energy Reduction",
+                              "description": "Unit: %.",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "value",
+                                  "source"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "source": {
+                                    "$ref": "#/$defs/sourceRef"
+                                  }
+                                }
+                              }
+                            },
+                            "productDesign": {
+                              "title": "2.1.4.1.2.2 Product Design",
+                              "description": "Unit: %.",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "value",
+                                  "source"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "source": {
+                                    "$ref": "#/$defs/sourceRef"
+                                  }
+                                }
+                              }
+                            },
+                            "scope3Reduction": {
+                              "title": "2.1.4.1.2.3 Scope 3 Reduction",
+                              "description": "Unit: %.",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "value",
+                                  "source"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "source": {
+                                    "$ref": "#/$defs/sourceRef"
+                                  }
+                                }
+                              }
+                            },
+                            "other": {
+                              "title": "2.1.4.1.2.4 Other",
+                              "description": "Unit: %.",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "value",
+                                  "source"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                  "value": {
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "source": {
+                                    "$ref": "#/$defs/sourceRef"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "carbonHandprinting": {
+                      "title": "2.1.4.2 Carbon Handprinting",
+                      "description": "Unit: %.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "carbonStorage": {
+                      "title": "2.1.4.3 Carbon Storage",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "containsBiogenicCarbon": {
+                          "title": "2.1.4.3.1 Contains Biogenic Carbon",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "activelyCarbonAbsorbing": {
+                          "title": "2.1.4.3.2 Actively Carbon Absorbing",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "carbonOffset": {
+                      "title": "2.1.4.4 Carbon Offset",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "percentOfProductOffset": {
+                          "title": "2.1.4.4.1 % of Product Offset (0-200%)",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "thirdPartyVerified": {
+                          "title": "2.1.4.4.2 Third-Party Verified",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "typeOfOffset": {
+                          "title": "2.1.4.4.3 Type of Offset",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "$ref": "#/$defs/enum_type_of_offset"
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "companyCarbonImpact": {
+              "title": "2.2 Company Carbon Impact",
+              "description": "Applies to the company.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "2.2.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "methodologyForCalculatingBaseline": {
+                      "title": "2.2.1.1 Methodology for Calculating Baseline",
+                      "description": "One value of the \"Methodology for Calculating Baseline\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_methodology_for_calculating_baseline"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "organizationalBoundary": {
+                      "title": "2.2.1.2 Organizational Boundary",
+                      "description": "One value of the \"Organizational Boundary\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_organizational_boundary"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "publicDisclosureOfCompanyEmissions": {
+                      "title": "2.2.1.3 Public Disclosure of Company Emissions",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "climateRegistry": {
+                          "title": "2.2.1.3.1 Climate Registry",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "cdp": {
+                          "title": "2.2.1.3.2 CDP",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "gri": {
+                          "title": "2.2.1.3.3 GRI",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "sbti": {
+                          "title": "2.2.1.3.4 SBTi",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "companyReportWebsite": {
+                          "title": "2.2.1.3.5 Company Report / Website",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "boolean",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "estimatedGhgEmissionsInventoryScope1": {
+                      "title": "2.2.1.4 Est. GHG Emissions Inventory for Scope 1",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "estimatedGhgEmissionsInventoryScope2": {
+                      "title": "2.2.1.5 Est. GHG Emissions Inventory for Scope 2",
+                      "description": "One value of the \"Est. GHG Emissions Inventory for Scope 2\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_est_ghg_emissions_inventory_for_scope_2"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "estimatedGhgEmissionsInventoryScope3": {
+                      "title": "2.2.1.6 Est. GHG Emissions Inventory for Scope 3",
+                      "description": "One value of the \"Est. GHG Emissions Inventory for Scope 3\" enumeration.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/$defs/enum_est_ghg_emissions_inventory_for_scope_3"
+                              },
+                              {
+                                "type": "null"
+                              }
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "commitments": {
+                  "title": "2.2.3 Commitments",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "participationInInitiatives": {
+                      "title": "2.2.3.1 Participation in Initiatives",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "optimization": {
+                  "title": "2.2.4 Optimization",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "certificationsDisclosures": {
+                      "title": "2.2.4.1 Certifications/Disclosures",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "circularEconomy": {
+          "title": "3. CIRCULAR ECONOMY",
+          "description": "A circular economy keeps materials in use for as long as possible, reducing waste, preserving value, and minimizing harm.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "sourcing": {
+              "title": "3.1 Sourcing",
+              "description": "Applies to the product.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "3.1.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "finalManufacturingLocation": {
+                      "title": "3.1.1.1 Final Manufacturing Location",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "city": {
+                          "title": "3.1.1.1.1 City",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "state": {
+                          "title": "3.1.1.1.2 State",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "postalCode": {
+                          "title": "3.1.1.1.3 Postal code",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "country": {
+                          "title": "3.1.1.1.4 Country",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "regenerativeAndRenewableContentPercentages": {
+                      "title": "3.1.1.2 Regenerative & Renewable Content Percentages (%)",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "reintegratedContent": {
+                      "title": "3.1.1.3 Reintegrated Content (%)",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "endOfLife": {
+              "title": "3.2 End-of-Life",
+              "description": "Applies to the product.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "3.2.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "endOfLifeGuidanceProvided": {
+                      "title": "3.2.1.1 End of Life Guidance Provided",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "guidanceProvidedOnPhysicalProduct": {
+                      "title": "3.2.1.2 Guidance Provided on Physical Product",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "optimization": {
+                  "title": "3.2.4 Optimization",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "extendedProducerResponsibilityTakeBackPrograms": {
+                      "title": "3.2.4.1 Extended Producer Responsibility (Take Back) Programs",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "companyFacilityWaste": {
+              "title": "3.3 Company Facility Waste",
+              "description": "Applies to the company.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "optimization": {
+                  "title": "3.3.4 Optimization",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "facilityWasteDiversion": {
+                      "title": "3.3.4.1 Facility Waste Diversion",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "socialHealthAndEquity": {
+          "title": "4. SOCIAL HEALTH & EQUITY",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "companyWorkplace": {
+              "title": "4.1 Company Workplace",
+              "description": "Applies to the company.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "4.1.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "corporateSocialResponsibilityAndEsgReportingType": {
+                      "title": "4.1.1.1 Corporate Social Responsibility (CSR) and/or Environmental Social Governance (ESG) Reporting Type",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "companyOwnership": {
+              "title": "4.2 Company Ownership",
+              "description": "Applies to the company.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "4.2.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "businessEnterpriseCategorization": {
+                      "title": "4.2.1.2 Business Enterprise Categorization",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "productSupplyChain": {
+              "title": "4.3 Supply Chain (Product)",
+              "description": "Applies to the product.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "4.3.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "rawMaterialSupplyChainStandards": {
+                      "title": "4.3.1.1 Raw Material Supply Chain Standards",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "designForFreedomSupplierQuestionnaire": {
+                      "title": "4.3.1.2 Design for Freedom (DFF) Supplier Questionnaire",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "boolean",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "companySupplyChain": {
+              "title": "4.4 Supply Chain (Company)",
+              "description": "Applies to the company.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "4.4.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "companySupplyChainStandards": {
+                      "title": "4.4.1.1 Company Supply Chain Standards",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ecosystemHealth": {
+          "title": "5. ECOSYSTEM HEALTH",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "environmentalImpacts": {
+              "title": "5.1 Environmental Impacts",
+              "description": "Applies to the product.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "5.1.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "certifiedWood": {
+                      "title": "5.1.1.1 Certified Wood",
+                      "description": "Unit: %.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "biobasedContent": {
+                      "title": "5.1.1.2 Biobased Content",
+                      "description": "Unit: %.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    },
+                    "responsiblySourcedStone": {
+                      "title": "5.1.1.3 Responsibly Sourced Stone",
+                      "description": "Unit: %.",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "assessment": {
+                  "title": "5.1.2 Assessment",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "traciAdditionalImpactAreas": {
+                      "title": "5.1.2.1 TRACI Additional Impact Areas (#)",
+                      "description": "A structured field: each sub-field is its own list of records.",
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "ozoneDepletionPotential": {
+                          "title": "5.1.2.1.1 Ozone depletion potential",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "acidificationPotential": {
+                          "title": "5.1.2.1.2 Acidification potential",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "eutrophicationPotential": {
+                          "title": "5.1.2.1.3 Eutrophication potential",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "smogFormationPotential": {
+                          "title": "5.1.2.1.4 Smog formation potential",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "abioticDepletionPotential": {
+                          "title": "5.1.2.1.5 Abiotic depletion potential",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        },
+                        "ecoToxicity": {
+                          "title": "5.1.2.1.6 Eco-toxicity",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "value",
+                              "source"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                              "value": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "source": {
+                                "$ref": "#/$defs/sourceRef"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "biodiversityAndConservation": {
+              "title": "5.2 Biodiversity & Conservation",
+              "description": "Applies to the product.",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "transparency": {
+                  "title": "5.2.1 Transparency",
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "standardsForCompanyImpactsOnBiodiversityAndConservation": {
+                      "title": "5.2.1.2 Standards for Company Impacts on Biodiversity & Conservation",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "value",
+                          "source"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "value": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "source": {
+                            "$ref": "#/$defs/sourceRef"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "title": "Source",
+      "description": "A data source (certification, declaration, or product / manufacturer data) that supplied at least one value. Fields refer to it by `name`.",
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique name of the source within this document. Field records refer to the source by this name."
+        },
+        "id": {
+          "type": "integer",
+          "description": "BuildingEase identifier of the certification record."
+        },
+        "certId": {
+          "type": "string",
+          "description": "Certificate or declaration number assigned by the issuing program."
+        },
+        "typeName": {
+          "type": "string",
+          "description": "Certification type, e.g. EPD, HPD, Declare."
+        },
+        "typeId": {
+          "type": "integer",
+          "description": "BuildingEase identifier of the certification type."
+        },
+        "issuedAt": {
+          "type": "string",
+          "format": "date",
+          "description": "Issue date (YYYY-MM-DD)."
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date",
+          "description": "Expiration date (YYYY-MM-DD)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the certified product or declaration."
+        }
+      }
+    },
+    "sourceRef": {
+      "description": "Name of the entry in the top-level `sources` list this value came from, or null when the value is not attributed to a data source.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "rating_reporting_threshold": {
+      "title": "Reporting Threshold",
+      "description": "The value of a level of the \"Reporting Threshold\" rating scale.",
+      "type": "string",
+      "enum": [
+        "100 ppm",
+        "1,000 ppm",
+        "10,000 ppm"
+      ]
+    },
+    "rating_disclosed": {
+      "title": "% Disclosed",
+      "description": "The value of a level of the \"% Disclosed\" rating scale.",
+      "type": "string",
+      "enum": [
+        "≥75% disclosed inventory",
+        "≥99% disclosed inventory",
+        "100% disclosed inventory"
+      ]
+    },
+    "rating_assessment_based_optimization_levels": {
+      "title": "Assessment-Based Optimization Levels",
+      "description": "The value of a level of the \"Assessment-Based Optimization Levels\" rating scale.",
+      "type": "string",
+      "enum": [
+        "75% Assessed",
+        "95% Assessed",
+        "100% Assessed"
+      ]
+    },
+    "enum_voc_content_scaqmd_compliance_level": {
+      "title": "VOC Content - SCAQMD Compliance Level",
+      "description": "The value of an entry of the \"VOC Content - SCAQMD Compliance Level\" enumeration.",
+      "type": "string",
+      "enum": [
+        "rule_1113_compliant",
+        "rule_1113_super_compliant",
+        "rule_1168_compliant",
+        "rule_1168_super_compliant",
+        "non_compliant"
+      ]
+    },
+    "rating_tvoc_emissions_range": {
+      "title": "TVOC Emissions Range",
+      "description": "The value of a level of the \"TVOC Emissions Range\" rating scale.",
+      "type": "string",
+      "enum": [
+        "very_high",
+        "high",
+        "medium",
+        "low",
+        "very_low"
+      ]
+    },
+    "enum_composite_wood_formaldehyde_emissions_compliance_carb_tsca_title_vi": {
+      "title": "Composite Wood - Formaldehyde Emissions Compliance (CARB & TSCA Title VI)",
+      "description": "The value of an entry of the \"Composite Wood - Formaldehyde Emissions Compliance (CARB & TSCA Title VI)\" enumeration.",
+      "type": "string",
+      "enum": [
+        "no_added_formaldehyde",
+        "ultra_low_emitting_formaldehyde",
+        "carb_exempt",
+        "not_applicable"
+      ]
+    },
+    "enum_carbon_assessment_type": {
+      "title": "Carbon Assessment Type",
+      "description": "The value of an entry of the \"Carbon Assessment Type\" enumeration.",
+      "type": "string",
+      "enum": [
+        "product_specific_epd_sku_specific_parameters",
+        "product_specific_epd_manufacturer_specific",
+        "product_lca",
+        "lca_internal",
+        "industry_average_epd",
+        "pcf_iso_14067",
+        "product_specific_epd_plant_specific",
+        "product_specific_epd_batch_specific",
+        "product_specific_epd_supply_chain_specific"
+      ]
+    },
+    "enum_embodied_carbon_third_party_verified": {
+      "title": "Embodied Carbon - Third-Party Verified",
+      "description": "The value of an entry of the \"Embodied Carbon - Third-Party Verified\" enumeration.",
+      "type": "string",
+      "enum": [
+        "yes_third_party_verified",
+        "no",
+        "yes_internally_verified"
+      ]
+    },
+    "enum_declared_unit": {
+      "title": "Declared Unit",
+      "description": "The value of an entry of the \"Declared Unit\" enumeration.",
+      "type": "string",
+      "enum": [
+        "1_ft",
+        "1_ft2",
+        "1_ft3",
+        "1_item",
+        "1_m",
+        "1_m2",
+        "1_m3",
+        "1_lbs",
+        "1_yd3",
+        "1_kg"
+      ]
+    },
+    "enum_type_of_offset": {
+      "title": "Type of Offset",
+      "description": "The value of an entry of the \"Type of Offset\" enumeration.",
+      "type": "string",
+      "enum": [
+        "nature_based",
+        "carbon_removal_other"
+      ]
+    },
+    "enum_methodology_for_calculating_baseline": {
+      "title": "Methodology for Calculating Baseline",
+      "description": "The value of an entry of the \"Methodology for Calculating Baseline\" enumeration.",
+      "type": "string",
+      "enum": [
+        "ghg_protocol",
+        "sbti"
+      ]
+    },
+    "enum_organizational_boundary": {
+      "title": "Organizational Boundary",
+      "description": "The value of an entry of the \"Organizational Boundary\" enumeration.",
+      "type": "string",
+      "enum": [
+        "equity_share_approach",
+        "control_approach_financial",
+        "control_approach_operational"
+      ]
+    },
+    "enum_est_ghg_emissions_inventory_for_scope_2": {
+      "title": "Est. GHG Emissions Inventory for Scope 2",
+      "description": "The value of an entry of the \"Est. GHG Emissions Inventory for Scope 2\" enumeration.",
+      "type": "string",
+      "enum": [
+        "location_based",
+        "market_based",
+        "both_location_and_market",
+        "none"
+      ]
+    },
+    "enum_est_ghg_emissions_inventory_for_scope_3": {
+      "title": "Est. GHG Emissions Inventory for Scope 3",
+      "description": "The value of an entry of the \"Est. GHG Emissions Inventory for Scope 3\" enumeration.",
+      "type": "string",
+      "enum": [
+        "yes",
+        "in_progress",
+        "no"
+      ]
+    }
+  }
+}
