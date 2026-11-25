@@ -11,6 +11,7 @@ A CMF document describes one product's sustainability attributes across five imp
 | [`schema/v1/CMF_STRUCTURE.md`](schema/v1/CMF_STRUCTURE.md) | Structure reference: document envelope, sources, every field, and the allowed values |
 | [`schema/v1/CMF_STRUCTURE.pdf`](schema/v1/CMF_STRUCTURE.pdf) | The same reference as a printable PDF |
 | [`schema/v1/cmf-structure.schema.json`](schema/v1/cmf-structure.schema.json) | Machine-readable definition (JSON Schema, draft 2020-12) for validating CMF documents |
+| [`tools/build_pdf.sh`](tools/build_pdf.sh) | Builds the PDF from the Markdown reference (needs pandoc and Chrome): `tools/build_pdf.sh schema/v1/CMF_STRUCTURE.md` |
 
 ## Versioning
 

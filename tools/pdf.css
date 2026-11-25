@@ -1,0 +1,83 @@
+/* Print styles for CMF_STRUCTURE.md → PDF (see build_pdf.sh). */
+
+@page {
+  size: letter landscape;
+  margin: 0.5in 0.5in 0.6in;
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font: 8pt -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #666;
+  }
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 10pt;
+  line-height: 1.4;
+  color: #1a1a1a;
+  margin: 0;
+  max-width: none;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+  margin: 1.2em 0 0.4em;
+  break-after: avoid;
+}
+h1 { font-size: 20pt; }
+h2 { font-size: 15pt; border-bottom: 1px solid #ccc; padding-bottom: 0.15em; }
+h3 { font-size: 13pt; }
+h4 { font-size: 11.5pt; }
+h5, h6 { font-size: 10.5pt; }
+
+p { margin: 0.4em 0; }
+
+/* Keep a section heading and its "Path:" line with the table below. */
+p:has(+ table) { break-after: avoid; }
+
+a { color: #0b5cad; text-decoration: none; }
+
+code {
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.88em;
+}
+
+/* Long JSON lines wrap instead of running off the page. */
+pre {
+  white-space: pre-wrap;
+  font-size: 8.5pt;
+  line-height: 1.3;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 4px;
+  padding: 0.5em 0.75em;
+}
+
+/* Tables span the page and size each column to its content. Keys and
+   values stay on one line (the longest still fits a landscape page); the
+   other columns share the remaining width and wrap. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5em 0 1em;
+  font-size: 9pt;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th, td {
+  border: 1px solid #c8ccd0;
+  padding: 3px 6px;
+  vertical-align: top;
+  text-align: left;
+}
+th { background: #eef1f4; }
+td code { white-space: nowrap; }
+
+/* The first column (field numbers, keys, value types) takes only the width
+   of its widest entry, leaving the rest for the columns that wrap. */
+th:first-child, td:first-child { width: 1%; white-space: nowrap; }
+
+/* Field numbers (1.1.4.1.10) in a smaller font with tighter padding. */
+table.fields td:first-child,
+table.fields th:first-child { font-size: 7.5pt; padding-left: 4px; padding-right: 4px; }
